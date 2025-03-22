@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Chatbot - conveRT Powered</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+
+  <div class="bg-gray-800 w-full max-w-md rounded-lg shadow-lg p-4 flex flex-col">
+    <!-- Header -->
+    <div class="text-xl font-bold mb-2 text-green-400">AI Chatbot <span class="text-sm text-gray-300">powered by conveRT</span></div>
+    
+    <!-- Chat Window -->
+    <div id="chatWindow" class="bg-gray-700 p-3 rounded-lg h-96 overflow-y-auto flex flex-col space-y-2 mb-4">
+      <!-- Chat messages will appear here -->
+    </div>
+
+    <!-- Input Box -->
+    <div class="flex space-x-2">
+      <input id="userInput" type="text" placeholder="Type your message..." class="flex-grow p-2 rounded bg-gray-600 text-white focus:outline-none" />
+      <button onclick="sendMessage()" class="bg-green-500 hover:bg-green-400 px-4 rounded font-semibold">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatWindow = document.getElementById('chatWindow');
+    const userInput = document.getElementById('userInput');
+
+    function sendMessage() {
+      const message = userInput.value.trim();
+      if (message === '') return;
+
+      // Add user message
+      addMessage('user', message);
+      userInput.value = '';
+
+      // Simulate bot response
+      setTimeout(() => {
+        const botReply = generateBotReply(message);
+        addMessage('bot', botReply);
+      }, 600);
+    }
+
+    function addMessage(sender, text) {
+      const messageDiv = document.createElement('div');
+        messageDiv.className = sender === 'user' ? 'self-end bg-green-500 text-white p-2 rounded' : 'self-start bg-gray-600 text-white p-2 rounded';
+      }
